@@ -1,4 +1,4 @@
-package org.gtfo.football_transfermarkt_api.dto.pagination;
+package org.gtfo.football_transfermarkt_api.dto.template.pagination;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
