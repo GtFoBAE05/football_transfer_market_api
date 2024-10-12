@@ -41,6 +41,13 @@ public class PlayerServiceImpl implements PlayerService {
     }
 
     @Override
+    public Player getPlayer(Integer playerId) {
+        return playerRepository.findById(playerId).orElseThrow(
+                () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Resource does not exists")
+        );
+    }
+
+    @Override
     public SimplifiedPlayerResponse getPlayerByIdAsSimplifiedPlayerResponse(Integer playerId) {
         Player player = playerRepository.findById(playerId).orElse(
                 null
@@ -152,7 +159,7 @@ public class PlayerServiceImpl implements PlayerService {
     }
 
     @Override
-    public Page<PlayerResponse> findPlayerWithClubId(Integer clubId, Integer page, Integer size, String  sortBy) {
+    public Page<PlayerResponse> findPlayerWithClubId(Integer clubId, Integer page, Integer size, String sortBy) {
         List<Sort.Order> orders = new ArrayList<>();
 
         if (StringUtils.hasText(sortBy)) {
@@ -182,7 +189,7 @@ public class PlayerServiceImpl implements PlayerService {
         );
     }
 
-    public Page<PlayerAppearanceResponse> findPlayerAppearance(Integer playerId, Integer page, Integer size, String sortBy){
+    public Page<PlayerAppearanceResponse> findPlayerAppearance(Integer playerId, Integer page, Integer size, String sortBy) {
         getPlayerById(playerId);
 
         return playerAppearanceService.getPlayerAppearanceByPlayerId(playerId, page, size, sortBy);

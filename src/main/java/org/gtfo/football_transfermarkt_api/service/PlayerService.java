@@ -3,12 +3,15 @@ package org.gtfo.football_transfermarkt_api.service;
 import org.gtfo.football_transfermarkt_api.dto.response.PlayerAppearanceResponse;
 import org.gtfo.football_transfermarkt_api.dto.response.player.PlayerResponse;
 import org.gtfo.football_transfermarkt_api.dto.response.player.SimplifiedPlayerResponse;
+import org.gtfo.football_transfermarkt_api.entity.Player;
 import org.springframework.data.domain.Page;
 
 import java.util.List;
 
 public interface PlayerService {
     PlayerResponse getPlayerById(Integer playerId);
+
+    Player getPlayer(Integer playerId);
 
     SimplifiedPlayerResponse getPlayerByIdAsSimplifiedPlayerResponse(Integer playerId);
 
