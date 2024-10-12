@@ -44,6 +44,13 @@ public class ClubServiceImpl implements ClubService {
     }
 
     @Override
+    public Club getClub(Integer clubId) {
+        return clubRepository.findById(clubId).orElseThrow(
+                () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Club with id " + clubId + " not found")
+        );
+    }
+
+    @Override
     public Page<ClubResponse> searchClub(Integer page, Integer size, String clubName, List<String> squadSize, List<String> averageAge, String sortBy) {
         Specification<Club> specifications = Specification.where(null);
         List<Sort.Order> orders = new ArrayList<>();
